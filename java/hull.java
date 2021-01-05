@@ -1,4 +1,9 @@
-// gift wrapping convex hull algorithm
+// graham scan algorithm for convex hull
+
+// time complexity: O(n log n)
+// hull(pts) returns indices of points on the convex hull of the set of points pts in counterclockwise order
+
+// not tested
 
 static int[] hull(int pts[][]) {
     int n = pts.length;
@@ -21,16 +26,12 @@ static int[] hull(int pts[][]) {
     hull[0] = perm[0];
     hull[1] = perm[1];
     for (int i = 2; i < n - 1; ++i) {
-        while (tail > 1 && z_cross(sub(pts[hull[tail - 1]], pts[hull[tail - 2]]), sub(pts[perm[i]],pts[hull[tail - 2]] )) < 0) {
-            --tail;
-        }
+        while (tail > 1 && z_cross(sub(pts[hull[tail - 1]], pts[hull[tail - 2]]), sub(pts[perm[i]],pts[hull[tail - 2]] )) < 0) --tail;
         hull[tail++] = perm[i];
     }
 
     int p = perm[n - 1];
-    while (tail > 1 && z_cross(sub(pts[hull[tail - 1]], pts[hull[tail - 2]]), sub(pts[p], pts[hull[tail - 2]])) < 0) {
-        --tail;
-    }
+    while (tail > 1 && z_cross(sub(pts[hull[tail - 1]], pts[hull[tail - 2]]), sub(pts[p], pts[hull[tail - 2]])) < 0) --tail;
 
     boolean flag;
     do {
@@ -47,9 +48,7 @@ static int[] hull(int pts[][]) {
     hull[tail++] = p;
 
     int ans[] = new int[tail - head];
-    for (int i = 0; i < ans.length; ++i) {
-        ans[i] = hull[head + i];
-    }
+    for (int i = 0; i < ans.length; ++i) ans[i] = hull[head + i];
     return ans;
 }
 

@@ -1,7 +1,9 @@
 // suffix array & longest common prefix array
 
-// suffix(str) returns suffix arr of str
-// lcp(str<, sufarr>) returns longest common prefix arr of str
+// time complexity: O(n)
+// suffix(s) returns suffix array of string s
+// lcp(s<, suf>) returns longest common prefix array of string s, optionally providing the suffix array suf of s
+
 static int[] lcp(char[] s) {
     return lcp(s, suffix(s));
 }

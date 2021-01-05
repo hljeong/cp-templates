@@ -1,6 +1,8 @@
 // z-function
 
-// z[i] = longest common prefix between s and s[i:]
+// time complexity: O(n)
+// z(s) returns z-function z of s z, where z[i] = length of longest common prefix between s and s[i:]
+
 static int[] z(char[] s) {
     int n = s.length, z[] = new int[n];
     for(int i = 1, l = 0, r = 0; i < n; ++i) {
